@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <title>Gatherly Social Network Toolkit</title>
+
+    {% include 'includes/stylesheets.html' %}
+    {% csrf_token %}
+
+</head>
+<body>
+<div class="theme-layout">
+
+    <div class="topbar stick">
+        <div class="logo">
+            <a title="" href="/"><img src="{% static 'images/logo.png' %}" alt="" style="height: 70px; width: 90px"></a>
+        </div>
+
+        <div class="top-area">
+            <ul class="setting-area">
+                <li><a href="{% url 'communications:all-messages' %}" class="link">Messenger</a></li>
+            </ul>
+            <div class="user-img">
+                <img src="{{ request.user.profile.profile_image.url }}" alt="" style="height: 40px; width: 40px;">
+                <span class="status f-online"></span>
+                <div class="user-setting">
+                    <a href="#" title=""><i class="ti-user"></i> view profile</a>
+                    <a href="{% url 'profile:edit-profile' %}" title=""><i class="ti-pencil-alt"></i>edit profile</a>
+                    <a href="{% url 'accounts:logout' %}" title=""><i class="ti-power-off"></i>log out</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- topbar -->
+
+    {% block content %}{% endblock %}
+
+</div>
+
+{% include 'includes/scripts.html' %}
+{% block scripts %}{% endblock %}
+
+</body>
+</html>
